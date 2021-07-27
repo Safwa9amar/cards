@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import data from "./data";
+import "./App.css";
+import List from "./list";
+import { AiFillCloseSquare } from "react-icons/ai";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      show: true,
+    };
+  }
+
+  delList = () => {
+    this.setState({ show: false });
+  };
+
+  render() {
+    let myheader;
+    if (this.state.show) {
+      myheader = <List data={data} />;
+    }
+    return (
+      <div className="App">
+        <div className="app-container ">
+          {myheader}
+          <AiFillCloseSquare className='close-icon' onClick={this.delList} /> 
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
